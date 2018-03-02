@@ -12,14 +12,14 @@ import Xmusic_detail from "./components/tab/xmusic_detail.jsx";
 import Xreading_detail from "./components/tab/xreading_detail.jsx";
 import Xpicturedetail from "./components/tab/xpicturedetail.jsx";
 import Xvdetail from "./components/others/xvdetail.jsx";
-
+import Xlogin from "./components/login.jsx";
 const store = createStore((state={
     name:"测试",
     src:"",
     isShowGallery:false,
+    reading_id:"",
     videoId:"",
     vlength:0,
-    music_id:0,
     src:'',
 	isShow:false
 },action)=>{
@@ -46,12 +46,12 @@ const store = createStore((state={
             	videoId: action.videoId,
           	})
     		break;
-    	case "SaveMusic_id":
+    	case "readingId":
     		return Object.assign({}, state, {
-            	music_id: action.music_id            	
-			})
+            	reading_id: action.id
+            })
     		break;
-     	default:
+    	default:
      		return state
     }
 })
@@ -63,7 +63,8 @@ ReactDOM.render(
                 <Route path="/reading_detail" component={Xreading_detail}></Route>
                 <Route path="/index" component={Xindex}></Route>
                 <Route path="/picdetail/:id" component={Xpicturedetail}></Route>   
-                <Route path="/vdetail" component={Xvdetail}></Route>
+				<Route path="/vdetail" component={Xvdetail}></Route>
+				<Route path="/login" component={Xlogin}></Route>
             </div>
         </Router>
     </Provider>

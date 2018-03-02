@@ -47,7 +47,7 @@ class Xmovie extends React.Component {
   	var _this = this;
   	$.ajax({
 				type:"post",
-				url:"http://localhost:3000/getVideo",
+				url:"http://www.piyujie.top:3000/getVideo",
 				success(data){
 					data = JSON.parse(data);
 					_this.setState({

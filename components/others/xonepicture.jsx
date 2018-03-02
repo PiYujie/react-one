@@ -33,7 +33,7 @@ export default class Xonepicture extends React.Component {
 		var _this = this;
 		$.ajax({
 			type:"post",
-			url:"http://localhost:3000/getAllOne",
+			url:"http://www.piyujie.top:3000/getAllOne",
 			async:true,
 			dataType:'json',
 			success(data){

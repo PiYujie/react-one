@@ -49,7 +49,7 @@ class Xvdetail extends React.Component {
 		console.log("ajax",this.props.videoId)
 		$.ajax({
 			type: "post",
-			url: "http://localhost:3000/getVideoAll",
+			url: "http://www.piyujie.top:3000/getVideoAll",
 			data: {
 				id: _this.props.videoId
 			},

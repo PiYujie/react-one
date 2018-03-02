@@ -14,7 +14,7 @@ class Xmusic_content extends React.Component{
 	render(){
 		return (
         <div className='music_list'>
-        <Link to='/music_detail'>
+        
         {
             function(self){
                 return self.state.arr.map((item,index)=>{
@@ -29,7 +29,9 @@ class Xmusic_content extends React.Component{
 			                    <div className="text-music-cover">
 			                        <div className="text-music-cover-background">&nbsp;</div>
 			                        <div className="text-music-cover-img">
-			                            <img className="lazy_img resize_img img_center_y" src={item.img} style={{display:'inline'}}/>
+			                            <a href={'#/music_detail/'+item.id}>
+			                            	<img className="lazy_img resize_img img_center_y" src={item.img} style={{display:'inline'}}/>
+			                            </a>
 			                        </div>
 			                        <div className="music-play music-detail-status">
 			                            <img className="play-btn" src="http://image.wufazhuce.com/play_btn_empty.png"/> 
@@ -45,14 +47,13 @@ class Xmusic_content extends React.Component{
 		             })
 		          }(this)
 		        }
-            </Link>
         </div>
         )
 	}
 	componentDidMount(){
         var _this=this;
     		$.ajax({
-    			url:"http://localhost:3000/getMusicAll",
+    			url:"http://www.piyujie.top:3000/getMusicAll",
     			type:"post",
     			dataType:"json",
     			success(data){					
@@ -66,16 +67,4 @@ class Xmusic_content extends React.Component{
     		})
    }
 }
-export default connect((state)=>{
-	
-	return state
-},(dispatch,props)=>{
-	return {
-		saveid(e){
-			dispatch({
-				type:"SaveMusic_id",
-				music_id:Number(e.currentTarget.getAttribute('data-id'))
-			})
-		}
-	}
-})(Xmusic_content);
+export default Xmusic_content

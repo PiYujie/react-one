@@ -54,7 +54,7 @@ class Xpicturedetail extends React.Component {
 		var _this = this;
 		$.ajax({
 			type:"post",
-			url:"http://localhost:3000/getOneById",
+			url:"http://www.piyujie.top:3000/getOneById",
 			async:true,
 			dataType:'json',
 			data:{
@@ -71,7 +71,7 @@ class Xpicturedetail extends React.Component {
 		var _this = this;
 		$.ajax({
 			type:"post",
-			url:"http://localhost:3000/getOneById",
+			url:"http://www.piyujie.top:3000/getOneById",
 			async:true,
 			dataType:'json',
 			data:{
@@ -93,7 +93,7 @@ class Xpicturedetail extends React.Component {
 		var _this = this;
 		$.ajax({
 			type:"post",
-			url:"http://localhost:3000/getOneById",
+			url:"http://www.piyujie.top:3000/getOneById",
 			async:true,
 			dataType:'json',
 			data:{

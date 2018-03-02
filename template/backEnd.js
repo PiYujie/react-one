@@ -5,9 +5,9 @@ var mysql = require("mysql");
 app.use(express.static('../public'));
 //创建数据库连接
 var connect = mysql.createConnection({
-	host:'10.40.153.73',
+	host:'rm-wz926t7cx37l367f1do.mysql.rds.aliyuncs.com',
 	user:'pyj',
-	password:'123',
+	password:'aliyunPYJ0207',
 	database:'one'
 })
 // 处理post请求的请求体模块
@@ -32,7 +32,6 @@ app.post("/getVideoAll",function(req,res){
 	//解决跨域问题
 	res.append("Access-Control-Allow-Origin","*");
 	//连接后执行相应功能
-	console.log(req.body.id);
 	connect.query(`SELECT * FROM video where video_id = ${req.body.id}`, function(error, results, fields) {
 		if(error) throw error;
 		res.send(JSON.stringify(results));
@@ -58,6 +57,46 @@ app.post("/getMusicDetail",function(req,res){
 		res.send(JSON.stringify(results));
 	})
 })
+//显示评论
+app.post("/getcomment",function(req,res){
+	//解决跨域问题
+	res.append("Access-Control-Allow-Origin","*");
+	//连接后执行相应功能
+	connect.query(`SELECT * FROM comment ORDER BY TIME DESC limit 3`, function(error, results, fields) {
+		if(error) throw error;
+		res.send(JSON.stringify(results));
+	})
+})
+//插入评论
+app.post("/showcomment",function(req,res){
+	//解决跨域问题
+	res.append("Access-Control-Allow-Origin","*");
+	//连接后执行相应功能
+	connect.query(`INSERT INTO comment( name, time, content, icon) VALUES ('${req.body.name}','${req.body.time}','${req.body.content}','${req.body.icon}')`, function(error, results, fields) {
+		if(error) throw error;
+		res.send(JSON.stringify(results));
+	})
+})
+//改变评论
+app.post("/changecomment",function(req,res){
+	//解决跨域问题
+	res.append("Access-Control-Allow-Origin","*");
+	//连接后执行相应功能
+	connect.query(`SELECT * FROM comment ORDER BY TIME DESC limit 3`, function(error, results, fields) {
+		if(error) throw error;
+		res.send(JSON.stringify(results));
+	})
+})
+//获取用户信息
+app.post("/getuser",function(req,res){
+	//解决跨域问题
+	res.append("Access-Control-Allow-Origin","*");
+	//连接后执行相应功能
+	connect.query(`SELECT * FROM user where tel='${req.body.tel}'`, function(error, results, fields) {
+		if(error) throw error;
+		res.send(JSON.stringify(results));
+	})
+})
 //获取所有的首页数据
 app.post("/getAllOne",function(req,res){
 	//解决跨域问题
@@ -75,6 +114,27 @@ app.post("/getOneById",function(req,res){
 		if(error)throw error;
 		res.send(JSON.stringify(results));
 	})
+})
+//阅读列表页
+app.post("/getReading",function(req,res){
+	//解决跨域问题
+	res.append("Access-Control-Allow-Origin","*");
+	//连接后执行相应功能
+	connect.query('SELECT * FROM reading', function(error, results, fields) {
+		/*console.log(results);*/
+		if(error) throw error;
+		res.send(JSON.stringify(results));
+	});
+})
+//根据id获取阅读的详细信息
+app.post("/getReading_detail",function(req,res){
+	//解决跨域问题
+	res.append("Access-Control-Allow-Origin","*");
+	//连接后执行相应功能
+	connect.query(`SELECT * FROM reading where id = ${req.body.id}`, function(error, results, fields) {
+		if(error) throw error;
+		res.send(JSON.stringify(results));
+	});
 })
 //监听端口
 server.listen(3000)
